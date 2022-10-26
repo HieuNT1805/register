@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-
+import {useNavigate} from 'react-router-dom';
 import { useForm } from "react-hook-form";
 
 import AuthService from "../services/auth.service";
 
 const Login = ()=> {
+    const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
 
@@ -19,7 +20,7 @@ const Login = ()=> {
 
         AuthService.login(username, password).then(
             () => {
-                window.open('/profile');
+                navigate('/profile');
                 window.location.reload();
             },
             (error) => {
